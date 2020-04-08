@@ -18,6 +18,8 @@
 \usepackage{macro}
 %\usepackage{diff}
 %
+\newcommand{\mH}{\mathrm{H}}
+%
 % 以下2つは参考文献の書式を指定する．bibtex を使わない場合はコメントアウト
 %\bibliographystyle{apsrev4-1}
 %\usepackage[numbers]{natbib}
@@ -208,19 +210,159 @@ $k = n - m$と変数を書き換え，Kroneckerのデルタを用いて$k + m = 
 さて，経路順序Green関数(contour-ordered Green function)を定義しよう：
 \begin{align}
 G (x, x')
-	& \equiv - \zi \langle \mathrm{T}_C [ \psi^{}_{\H} (x) \psi^{\dagger}_{\H} (x') ] \rangle
+	& \equiv - \zi \langle \mathrm{T}_C [ \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') ] \rangle
+\label{def:G}
 ,\end{align}
 ただし，経路$C$は$t_0$に始まり，同じ$t_0$で終わる図~\ref{fig:4.2}のような，実軸に沿って$t$と$t'$を一度だけ通るような経路を表す．
-ここで，Part Iと同じように，$\psi_{\H} (x)$
+ここで，Part Iと同じように，$\psi_{\mH} (x)$はフェルミオンの場の演算子で，Heisenberg表示を表す．
+また，以下では$x = (\br, t)$あるいは$x = (\br, \tau)$という簡略表記を用いる\footnote{原文では$1 = (\bm{x}_1, t_1$などと書かれているが，個人的にはあまり馴染みがないため，馴染みのある表記に書き換えた．}．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[thbp]
+\centering
+\includegraphics[width=\linewidth]{4.2.eps}
+\caption{\label{fig:4.2}径路$C$．}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+非平衡の理論において経路順序Green関数は，熱平衡の理論におけるcausal Green関数に類似の役割を果たす．
+すなわち，以下で見るように，Wickの定理に基づいた摂動展開を有している．
+しかしながら，時刻ラベル$\tau$と$\tau'$は経路上の2つの分枝にあるため，それらがどの分枝にあるのかが問題になる．
+$\tau$と$\tau'$は，図~\ref{fig:4.2}の経路の2つの分枝のどちらの分枝にもありうるので，4つの可能性がある．
+ゆえに，式~(\ref{def:G})は，4つの異なる関数を内包する．
+\begin{align}
+G (x, x')
+	& = \left\{
+	\begin{array}{l l}
+		G_{\mathrm{c}} (x, x')
+	&	t, t' \in C_1
+	\\	G^{>} (x, x')
+	&	t \in C_2, t' \in C_1
+	\\	G^{<} (x, x')
+	&	t \in C_1, t' \in C_2
+	\\	G_{\tilde{\mathrm{c}}} (x, x')
+	&	t, t' \in C_2
+	.\end{array}
+	\right.
+\end{align}
+ここで，causal (あるいは時間順序) Green関数$G_{\mathrm{c}}$を
+\begin{align}
+G_{\mathrm{c}} (x, x')
+	& = - \zi \langle \mathrm{T} [ \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') ] \rangle
+\notag \\
+	& = - \zi \theta (t - t') \langle \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') \rangle
+		+ \zi \theta (t' - t) \langle \psi^{\dagger}_{\mH} (x') \psi^{}_{\mH} (x) \rangle
+\end{align}
+のように，また``greater'' Green関数$G^{>}$を
+\begin{align}
+G^{>} (x, x')
+	& = - \zi \langle \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') \rangle
+\end{align}
+のように，そして``lesser'' Green関数$G^{<}$を
+\begin{align}
+G^{<} (x, x')
+	& = + \zi \langle \psi^{\dagger}_{\mH} (x') \psi^{}_{\mH} (x) \rangle
+\end{align}
+のように，最後に反時間順序Green関数$G_{\tilde{\mathrm{c}}}$を
+\begin{align}
+G_{\tilde{\mathrm{c}}} (x, x')
+	& = - \zi \langle \tilde{\mathrm{T}} [ \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') ] \rangle
+\notag \\
+	& = - \zi \theta (t' - t) \langle \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') \rangle
+		+ \zi \theta (t - t') \langle \psi^{\dagger}_{\mH} (x') \psi^{}_{\mH} (x) \rangle
+\end{align}
+のように導入した．
+$G_{\mathrm{c}} + G_{\tilde{\mathrm{c}}} = - \zi \langle \psi^{}_{\mH} (x) \psi^{\dagger}_{\mH} (x') \rangle + \zi \langle \psi^{\dagger}_{\mH} (x') \psi^{}_{\mH} (x) \rangle = G^{>} + G^{<}$なので，独立な関数は3つである．
+この自由度の選び方には幾つかの流儀があり，幾つもの表記法が見られる．
+我々の目的のために最も最適な関数は$G^{>}$と$G^{<}$（これらはしばしば「相関関数」という一般的な名前で書かれることもある）と，先進Green関数と遅延Green関数である．
+先進Green関数は
+\begin{align}
+G^{\A} (x, x')
+	& = \zi \theta (t' - t) \langle \{ \psi^{}_{\mH} (x), \psi^{\dagger}_{\mH} (x') \} \rangle
+\notag \\
+	& = - \theta (t' - t) \left[ G^{>} (x, x') - G^{<} (x, x') \right]
+\end{align}
+と遅延Green関数は
+\begin{align}
+G^{\R} (x, x')
+	& = - \zi \theta (t - t') \langle \{ \psi^{}_{\mH} (x), \psi^{\dagger}_{\mH} (x') \} \rangle
+\notag \\
+	& = \theta (t - t') \left[ G^{>} (x, x') - G^{<} (x, x') \right]
+\end{align}
+で定義される．
+ここで$\{A, B\} = A B + B A$は反交換関係を表す．
+$G^{\R} (x, x') - G^{\A} (x, x') = G^{>} (x, x') - G^{<} (x, x')$が見てとれる．
+後ろの章にて，$G^{>}, G^{<}, G^{\R}, G^{\A}$の物理的な解釈について詳細に議論する予定である（{\color{red}どこ？}）．
+
+必要な関数の定義を終えて，本節の中心課題に戻るとする．
+すなわち，経路順序Green関数~(\ref{def:G})をWickの定理を用いられる形に変形するということだ．
+第一段階として，式~(\ref{eq:O_H_Ct})を導いた解析，つまり$H$依存性を$h$依存性に書き換えることをここでも繰り返す．
+その結果は，\footnote{{\color{red} このあたりの計算が端折られている点が，あまり親切ではないと感じる点ではある．}}
+\begin{align}
+G (x, x')
+	& = - \zi \langle \mathrm{T}_C [ S_{C}^{H} \psi^{}_{h} (x) \psi^{\dagger}_{h} (x') ] \rangle
+\label{eq:G_H}
+,\end{align}
+ここで，$\psi^{(\dagger)}_{h} (x) = e^{\zi h (t - t_0)} \psi^{(\dagger)} (\br) e^{- \zi h (t - t_0)}$は$\psi^{(\dagger)} (\br)$の相互作用表示であり，
+\begin{align}
+S_{C}^{H}
+	& = \exp \left[ - \zi \int_{C} \dd{\tau} H'_{h} (\tau) \right]
+\end{align}
+である．
+ダイヤグラム的摂動理論が存在することを示すためには，さらにもう一段階の式変形が必要である．
+$h = H_0 + H_i$のように$h$が2つの項を含んでいたこと，そしてWickの定理が$H_0$に対してのみ機能することを思い出せば，$h$依存性を$H_0$依存性に置き換えなければならないことになる．
+また，密度行列にも$h$が含まれており，それゆえに，式~(\ref{eq:G_H})には，$\rho (h)$, $S_{C}^{H}$, $\psi^{}_h (x)$, $\psi^{\dagger}_h (x')$の合計で4箇所に$h$が含まれていることに留意する．
+
+この式変形は，いくぶん退屈であるが躓くところはほとんどないはずなので，詳細は文献~\cite{RammerRMP}に譲り，最終結果を記すだけで十分だろう．~\footnote{{\color{red} このあたりの計算が端折られている点が，あまり親切ではないと感じる点ではある．}}
+\begin{align}
+G (x, x')
+	& = - \zi \frac{ \mathrm{Tr} \left\{ \mathrm{T}_{C_v} [ S_{C_v}^i S'_{C} \psi^{}_{H_0} (x) \psi^{\dagger}_{H_0} (x') ] \right\} }%
+		{ \mathrm{Tr} [ \rho_0 \mathrm{T}_{C_v} ( S_{C_v}^i S'_{C} ) ] }
+\label{eq:G_H0}
+,\end{align}
+ここで，密度行列$\rho_0$は
+\begin{align}
+\rho_0
+	& = \frac{\exp (- \beta H_0)}{\mathrm{Tr} [ \exp (- \beta H_0) ]}
+\end{align}
+で与えられ，
+\begin{align}
+S'_{C}
+	& = \exp \left[ - \zi \int_{C} \dd{\tau} H'_{H_0} (\tau) \right]
+\notag
+, \\
+S_{C_v}^i
+	& = \exp \left[ - \zi \int_{C_v} \dd{\tau} H_{i, H_0} (\tau) \right]
+\end{align}
+であるが，$H'_{H_0}$と$H_{i, H_0}$は$H_0$による時間発展を表す;
+\begin{align*}
+H'_{H_0} (t)
+	= e^{\zi H_0 (t - t_0)} H' e^{- \zi H_0 (t - t_0)}
+, \qquad
+H_{i, H_0} (t)
+	= e^{\zi H_0 (t - t_0)} H_i e^{- \zi H_0 (t - t_0)}
+.\end{align*}
+また，経路$C$は図~\ref{fig:4.2}にて定義したものであり，経路$C_v$は図~\ref{fig:4.3}に示した．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[thbp]
+\centering
+\includegraphics[width=0.5\linewidth]{4.3.eps}
+\caption{\label{fig:4.3}径路$C_v$．}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+式~(\ref{eq:G_H0})は，重要な結果であり，見た目の複雑さに関わらず，多くの魅力的な性質を有している．
+まず第一に，厳密であるという点である．
+次に，全ての時間依存性は，$H_0$によって記されているため，「解くことができる」．
+特に，平方完成できる密度行列($\sim \exp( - \beta H_0)$)のために，Wickの定理を用いることが可能であり，そのためFeynmanダイヤグラムを非平衡系の問題に構成することができる．
+ちょうど熱平衡系のときのように，分母が非連結のダイヤグラムからの寄与を打ち消してくれるのである．
+
+以下のようにこの節の中心的な結果をまとめられる．
+すなわち，熱平衡理論と非平衡理論は構造的に等価であり，それらの違いは，単に実時間における積分が経路上の積分に置き換えられただけである．
 
 
-
-
-
-
-
-
-
+%-%-%-%-%-%-%-%-%-%-
+\subsection{解析接続}
+%-%-%-%-%-%-%-%-%-%-
 
 
 
@@ -241,11 +383,12 @@ G (x, x')
 
 \begin{thebibliography}{99}
 \bibitem{Mahan} G.~D.~Mahan, ``Many-Particle Physics'', 2nd edn. (Plenum, New York, 1990).
-\bibitem{Hershfield} S. Hershfield: Phys. Rev. Lett. 70, 2135 (1993)
-\bibitem{Bokes} P. Bokes, H. Mera, R. W. Godby: Phys. Rev. B 72 165425 (2005)
-\bibitem{Coleman} P. Coleman, W. Mao: J. Phys. Cond. Matt. 16, L263 (2004)
-\bibitem{Doyon} B. Doyon, N. Andrei: Phys. Rev. B 73, 245326 (2006)
-\bibitem{Han} J. E. Han, Phys. Rev. B 73, 125319 (2006)
+\bibitem{Hershfield} S. Hershfield: Phys. Rev. Lett. 70, 2135 (1993).
+\bibitem{Bokes} P. Bokes, H. Mera, R. W. Godby: Phys. Rev. B 72 165425 (2005).
+\bibitem{Coleman} P. Coleman, W. Mao: J. Phys. Cond. Matt. 16, L263 (2004).
+\bibitem{Doyon} B. Doyon, N. Andrei: Phys. Rev. B 73, 245326 (2006).
+\bibitem{Han} J. E. Han, Phys. Rev. B 73, 125319 (2006).
+\bibitem{RammerRMP} J. Rammer, H. Smith: Rev. Mod. Phys. 58, 323 (1986).
 \end{thebibliography}
 
 
