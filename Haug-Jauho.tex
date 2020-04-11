@@ -451,8 +451,124 @@ C^{<} (t, t')
 \begin{align}
 C^{<} (t, t')
 	& = \int_{-\infty}^{\infty} \dd{t_1} \left[ A^{\R} (t, t_1) B^{<} (t_1, t') + A^{<} (t, t_1) B^{\A} (t_1, t') \right]
+\label{eq:C^<}
 .\end{align}
+また，$<$を$>$に置き換えるだけで，$>$成分について同様の結果が得られる．
+実際，$t$が$t' \to t_0$の径路上にあり，$t'$が$t_0 \to t'$の経路上にある場合，
+\begin{align*}
+C^{>} (t, t')
+	& = \int_{C'_1} \dd{\tau} A^{>} (t, \tau) B (\tau, t')
+		+ \int_{C'_2} \dd{\tau} A (t, \tau) B^{>} (\tau, t')
+\\	& = \int_{-\infty}^{t'} \dd{t_1} A^{>} (t, t_1) B^{<} (t_1, t')
+		+ \int_{t'}^{-\infty} \dd{t_1} A^{>} (t, t_1) B^{>} (t_1, t')
+\\	& \hspace{1em}
+		+ \int_{-\infty}^{t} \dd{t_1} A^{>} (t, t_1) B^{>} (t_1, t')
+		+ \int_{t}^{-\infty} \dd{t_1} A^{<} (t, t_1) B^{>} (t_1, t')
+\\	& = \int_{-\infty}^{\infty} \dd{t_1} A^{>} (t, t_1) \left[ \theta (t' - t_1) \left( B^{<} (t_1, t') -  B^{>} (t_1, t') \right) \right]
+\\	& \hspace{1em}
+		+ \int_{-\infty}^{\infty} \dd{t_1} \left[ \theta (t - t_1) \left( A^{>} (t, t_1) - A^{<} (t, t_1) \right) \right] B^{>} (t_1, t')
+\\	& = \int_{-\infty}^{\infty} \dd{t_1} \left[ A^{\R} (t, t_1) B^{>} (t_1, t') + A^{>} (t, t_1) B^{\A} (t_1, t') \right]
+,\end{align*}
+ただし$C'_1$, $C'_2$はそれぞれ$-\infty \to t' \to -\infty$と$-\infty \to t \to -\infty$の径路を表す．
 
+この結果~(\ref{eq:C^<})は，3つの(行列)積に対して容易に一般化できる．
+仮に$D = A B C$が径路上に定義されていたとすると，実軸上では
+\begin{align}
+D^{<}
+	& = A^{\R} B^{\R} C^{<} + A^{\R} B^{<} C^{\A} + A^{<} B^{\A} C^{\A}
+\label{eq:D^<}
+\end{align}
+となる．
+実際，$X = A B$とおくと，
+\begin{align*}
+D^{<}
+	& = X^{\R} C^{<} + X^{<} C^{\A}
+	= A^{\R} B^{\R} C^{<} + \left( A^{\R} B^{<} + A^{<} B^{\A} \right) C^{\A}
+\end{align*}
+となり，式~(\ref{eq:D^<})を得る．
+また$D^{>}$についても同様の計算で簡単に示すことができる．
+ここで，$C^{\R} = A^{\R} B^{\R}$を用いたが，それは
+\begin{align}
+C^{\R} (t, t')
+	& = \theta (t - t') \left[ C^{>} (t, t') - C^{<} (t, t') \right]
+\notag \\
+	& = \theta (t - t') \int_{-\infty}^{\infty} \dd{t_1} \left[
+		A^{\R} (t, t_1) \left( B^{>} (t_1, t') - B^{<} (t_1, t') \right)
+		+ \left( A^{>} (t, t_1) - A^{<} (t, t_1) \right) B^{\A} (t_1, t')
+	\right]
+\notag \\
+	& = \theta (t - t') \int_{-\infty}^{\infty} \dd{t_1} \left[
+		\theta (t - t_1) \left( A^{>} (t, t_1) - A^{<} (t, t_1) \right) \left( B^{>} (t_1, t') - B^{<} (t_1, t') \right)
+\right. \notag \\ & \hspace{8em} \left.
+		+ \left( A^{>} (t, t_1) - A^{<} (t, t_1) \right) \theta (t' - t_1) \left( B^{<} (t_1, t') - B^{<} (t_1, t') \right)
+	\right]
+\notag \\
+	& = \theta (t - t') \left[
+		\int_{-\infty}^{t} \dd{t_1} \left( A^{>} (t, t_1) - A^{<} (t, t_1) \right) \left( B^{>} (t_1, t') - B^{<} (t_1, t') \right)
+\right. \notag \\ & \hspace{6em} \left.
+		+ \int_{-\infty}^{t'} \dd{t_1} \left( A^{>} (t, t_1) - A^{<} (t, t_1) \right) \left( B^{<} (t_1, t') - B^{>} (t_1, t') \right)
+	\right]
+\notag \\
+	& = \int_{t'}^{t} \dd{t_1} A^{\R} (t, t_1) B^{\R} (t_1, t')
+\\	& = \int_{-\infty}^{\infty} \dd{t_1} A^{\R} (t, t_1) B^{\R} (t_1, t')
+\notag
+\end{align}
+最終行では$t_1 < t$では$A^{\R} (t, t_1) = 0$かつ$t_1 > t'$では$B^{\R} (t_1, t') = 0$であることを用いた．
+
+
+ダイヤグラムによる摂動展開において様々な項を考慮するとき，2つのGreen関数線が平行（または反平行）に走るようなものに出会うことがある．
+たとえば，分極や，電子フォノン相互作用の自己エネルギーなどである．
+この場合，
+\begin{align}
+E (\tau, \tau')
+	& = A (\tau, \tau') B (\tau, \tau')
+, \notag \\
+F (\tau, \tau')
+	& = A (\tau, \tau') B (\tau', \tau)
+\end{align}
+のような項のlesser成分や先進/遅延成分を計算しなければならなくなる．
+ここで$\tau$と$\tau'$は径路上の変数である．
+これらのlesser成分はすなわち$\tau (\to t)$が径路の前半部分にあり，$\tau' (\to t')$が経路の後半部分にあることを意味しているので，
+\begin{align}
+E^{<} (t, t')
+	& = A^{<} (t, t') B^{<} (t, t')
+, \notag \\
+F^{<} (t, t')
+	& = A^{<} (t, t') B^{>} (t, t')
+\end{align}
+となる．
+また，greater成分についても同様に考えれば，
+\begin{align*}
+E^{>} (t, t')
+	& = A^{>} (t, t') B^{>} (t, t')
+, \notag \\
+F^{>} (t, t')
+	& = A^{>} (t, t') B^{<} (t, t')
+\end{align*}
+となるので，
+\begin{align*}
+E^{\R} (t, t')
+	& = \theta (t - t') \left[ E^{>} (t, t') - E^{<} (t, t') \right]
+\\	& = \theta (t - t') \left[ A^{>} (t, t') B^{>} (t, t') - A^{<} (t, t') B^{<} (t, t') \right]
+\\	& = \theta (t - t') \left[ A^{>} (t, t') - A^{<} (t, t') \right] B^{>} (t, t')
+		+ \theta (t - t') A^{<} (t, t') \left[ B^{>} (t, t') - B^{<} (t, t') \right]
+\\	& = A^{\R} (t, t') B^{>} (t, t') + A^{<} (t, t') B^{\R} (t, t')
+\\	& = A^{\R} (t, t') \left[ B^{>} (t, t') - B^{<} (t, t') \right] + A^{\R} (t, t') + B^{<} (t, t') + A^{<} (t, t') B^{\R} (t, t')
+\\	& = A^{\R} (t, t') B^{\R} (t, t') + A^{\R} (t, t') + B^{<} (t, t') + A^{<} (t, t') B^{\R} (t, t')
+\end{align*}
+ただし最終行で$ t < t'$では$A^{\R} (t, t') = 0$であることから$\theta (t - t')$を補った．
+また，
+\begin{align}
+F^{\R} (t, t')
+	& = \theta (t - t') \left[ F^{>} (t, t') - F^{<} (t, t') \right]
+\notag \\
+	& = \theta (t - t') \left[ A^{>} (t, t') B^{<} (t', t) - A^{<} (t, t') B^{>} (t', t) \right]
+\notag \\
+	& = \theta (t - t') \left[ A^{>} (t, t') - A^{<} (t, t') \right] B^{<} (t', t)
+		+ \theta (t - t') A^{<} (t, t') \left[ B^{<} (t', t) - B^{>} (t', t) \right]
+\notag \\
+	& = A^{\R} (t, t') B^{<} (t', t) + A^{<} (t, t') B^{\A} (t', t)
+.\end{align}
 
 
 
