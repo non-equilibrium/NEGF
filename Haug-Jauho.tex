@@ -575,6 +575,184 @@ F^{\R} (t, t')
 
 
 
+%-%-%-%-%-%-%-%-%-%--%-%-%-%-%-%-%-%-%-%
+\section{基礎量子運動学的方程式}
+%-%-%-%-%-%-%-%-%-%--%-%-%-%-%-%-%-%-%-%
+%-%-%-%-%-%-%-%-%-%-
+\subsection{\label{sec:5.1}序論}
+%-%-%-%-%-%-%-%-%-%-
+この章では，非平衡Green関数に対する（実時間の）運動方程式を導入する．
+それらの式は後の章すべての基礎を成す．
+定式化には，等価であるが異なる方法が2つあり，一つはKadanoff-Baymの方法，もう一つはKeldyshの方法である．
+最終結果は~(\ref{eq:KB_formalism})と~(\ref{eq:Keldysh_formalism})でそれぞれ与えられており，それらは\ref{sec:5.2}~節と\ref{sec:5.3}~節において別個に議論する．
+ここでは原著の導出を再現するのではなく，むしろ前節で述べた解析接続の法則を用いた導出を行う．
+その方が簡潔で系統的な導出となるためである．
+
+%-%-%-%-%-%-%-%-%-%-
+\subsection{\label{sec:5.2}Kadanoff-Baymの公式}
+%-%-%-%-%-%-%-%-%-%-
+出発点はDyson方程式~(\ref{eq:Dyson})の微分形である:
+\begin{align}
+\left\{
+	\zi \frac{\partial}{\partial \tau} - \left[ - \frac{1}{2} \bm{\nabla}^2_{\br} + U (x) \right] G (x, x')
+\right\}
+	& = \delta (x - x')
+		+ \int_{C} \dd{\tau_1} \int \dd{\br_1} \varSigma (x, x_1) G (x_1, x') 
+, \notag \\
+\left\{
+	- \zi \frac{\partial}{\partial \tau'} - \left[ - \frac{1}{2} \bm{\nabla}^2_{\br'} + U (x') \right] G (x, x')
+\right\}
+	& = \delta (x - x')
+		+ \int_{C} \dd{\tau_1} \int \dd{\br_1} G (x, x_1) \varSigma (x_1, x')
+\label{eq:Dyson_differential_form}
+,\end{align}
+ここで$x = (\br, \tau)$と略記し，それに伴って$\delta (x - x') = \delta (\br - \br') \delta (\tau - \tau')$である．
+以下では，2項の積を内部変数（空間$\br$，時間$\tau$，スピンなど）についての行列積であると解釈するという表記を採用するとより便利であり，ただ一つの変数のみに依存する量，たとえば$G_0$や$U$は，この表記において対角行列となる．
+よって，式~(\ref{eq:Dyson_differential_form})は，
+\begin{align}
+\left( G_0^{-1} - U \right) G
+	& = 1 + \varSigma G
+, \notag \\
+G \left( G_0^{-1} - U \right)
+	& = 1 + G \varSigma
+\label{eq:Dyson_differential_form_shortly}
+\end{align}
+と書くことができる．
+相関関数$G^{<}$や$G^{>}$に対する式を求めたいので，規則~(\ref{eq:C^<})を適用すると，
+\begin{align}
+\left( G_0^{-1} - U \right) G^{<}
+	& = \varSigma^{\R} G^{<} + \varSigma^{<} G^{\A}
+, \notag \\
+G^{<} \left( G_0^{-1} - U \right)
+	& = G^{\R} \varSigma^{<} + G^{<} \varSigma^{\A}
+\label{eq:5.3}
+\end{align}
+を得る．
+ここで注意しておきたいこととして，式~(\ref{eq:Dyson_differential_form_shortly})におけるデルタ関数は，必ずゼロになる．
+それは，$G^{<}$の定義により$\tau$と$\tau'$は異なる分枝に位置して必ず$\tau'$の方が経路上で後ろに現れるためである．
+
+次に，式~(\ref{eq:5.3})の二つの式を差分を取ると，
+\begin{align}
+\left[ \left( G_0^{-1} - U \right), G^{<} \right]
+	& = \varSigma^{\R} G^{<} + \varSigma^{<} G^{\A} - G^{\R} \varSigma^{<} - G^{<} \varSigma^{\A}
+\label{eq:5.4}
+.\end{align}
+ここで，恒等式
+\begin{align}
+P^{\R}
+	& = \frac{1}{2} ( P^{\R} + P^{\A} ) + \frac{1}{2} ( P^{\R} - P^{\A} )
+, \notag \\
+P^{A}
+	& = \frac{1}{2} ( P^{\R} + P^{\A} ) - \frac{1}{2} ( P^{\R} - P^{\A} )
+\end{align}
+を用いて式~(\ref{eq:5.4})の右辺に現れる$\R$と$\A$を含む項を対称化する．
+\begin{align*}
+\text{(\ref{eq:5.4})}
+	& = \left[ \frac{1}{2} ( \varSigma^{\R} + \varSigma^{\A} ) + \frac{1}{2} ( \varSigma^{\R} - \varSigma^{\A} ) \right] G^{<}
+		+ \varSigma^{<} \left[ \frac{1}{2} ( G^{\R} + G^{\A} ) - \frac{1}{2} ( G^{\R} - G^{\A} ) \right]
+\\	& \hspace{1em}
+		- \left[ \frac{1}{2} ( G^{\R} + G^{\A} ) + \frac{1}{2} ( G^{\R} - G^{\A} ) \right] \varSigma^{<}
+		- G^{<} \left[ \frac{1}{2} ( \varSigma^{\R} + \varSigma^{\A} ) - \frac{1}{2} ( \varSigma^{\R} - \varSigma^{\A} ) \right]
+\\	& = \left[ \frac{1}{2} ( \varSigma^{\R} + \varSigma^{\A} ), G^{<} \right]
+		+ \left[ \varSigma^{<}, \frac{1}{2} ( G^{\R} + G^{\A} ) \right]
+%\\	& \hspace{1em}
+		+ \frac{1}{2} \left\{ ( \varSigma^{\R} - \varSigma^{\A} ), G^{<} \right\}
+		- \frac{1}{2} \left\{ ( G^{\R} - G^{\A} ), \varSigma^{<} \right\}
+\end{align*}
+となるので，結局，$\varSigma = \frac{1}{2} ( \varSigma^{\R} + \varSigma^{\A} )$と$G = \frac{1}{2} (G^{\R} + G^{\A})$という量を導入すると，式~(\ref{eq:5.4})は
+\begin{align}
+\left[ \left( G_0^{-1} - U \right), G^{<} \right]
+	- \left[ \varSigma, G^{<} \right]
+	- \left[ \varSigma^{<}, G \right]
+	& = \frac{1}{2} \left\{ ( \varSigma^{\R} - \varSigma^{\A} ), G^{<} \right\}
+		- \frac{1}{2} \left\{ ( G^{\R} - G^{\A} ), \varSigma^{<} \right\}
+\label{eq:5.6}
+\end{align}
+と書ける．ただし波括弧は反交換関係を表す．
+この右辺はまだ少し計算が必要である．
+$G^{\R} - G^{\A} = G^{>} - G^{<}$とそれに類する関係式$\varSigma^{\R} - \varSigma^{\A} = \varSigma^{>} - \varSigma^{<}$を用いると，(一般化)Kadanoff-Baym~(GKB)方程式
+\begin{align}
+\left[ \left( G_0^{-1} - U \right), G^{<} \right]
+	- \left[ \varSigma, G^{<} \right]
+	- \left[ \varSigma^{<}, G \right]
+	& = \frac{1}{2} \left\{ ( \varSigma^{>} - \varSigma^{<} ), G^{<} \right\}
+		- \frac{1}{2} \left\{ ( G^{>} - G^{<} ), \varSigma^{<} \right\}
+\notag \\
+	& = \frac{1}{2} \left\{ \varSigma^{>}, G^{<} \right\}
+		- \frac{1}{2} \left\{ G^{>}, \varSigma^{<} \right\}
+\label{eq:KB_formalism}
+\end{align}
+を得る．
+平衡系の理論においてスペクトル関数$a = - 2 \Im g^{\R} = \zi ( g^{\R} - g^{\A} )$や自己エネルギーの虚部$\gamma = - 2 \Im \sigma^{\R} = \zi (\sigma^{\R} - \sigma^{\A})$に出会すことがあったが，同様の概念を非平衡系に拡張しよう．
+すなわち$A \equiv \zi (G^{\R} - G^{\A})$と$\varGamma \equiv \zi (\varSigma^{\R} - \varSigma^{\A})$．
+この表記を用いると，
+\begin{align*}
+\left[ \left( G_0^{-1} - U \right), G^{<} \right]
+	- \left[ \varSigma, G^{<} \right]
+	- \left[ \varSigma^{<}, G \right]
+	& = \frac{1}{2\zi} \left\{ \varGamma, G^{<} \right\}
+		- \frac{1}{2\zi} \left\{ A, \varSigma^{<} \right\}
+\end{align*}
+という式を得られる．
+これらの式が今後の議論における基礎となる．
+
+greater成分$G^{>}$に対するGKB方程式を同様に導出することができる．
+結果としては，式~(\ref{eq:KB_formalism})との違いは，左辺における$<$という記号がすべて$>$に置き換えられるだけで，右辺は変更を受けない．
+実際，Langreth則は$>$についても全く同様に成り立つため，式~(\ref{eq:5.6})まではすべての$<$を$>$に置き換えるだけでよい．
+\begin{align*}
+\left[ \left( G_0^{-1} - U \right), G^{>} \right]
+	- \left[ \varSigma, G^{>} \right]
+	- \left[ \varSigma^{>}, G \right]
+	& = \frac{1}{2} \left\{ ( \varSigma^{\R} - \varSigma^{\A} ), G^{>} \right\}
+		- \frac{1}{2} \left\{ ( G^{\R} - G^{\A} ), \varSigma^{>} \right\}
+\\	& = \frac{1}{2} \left\{ ( \varSigma^{>} - \varSigma^{<} ), G^{>} \right\}
+		- \frac{1}{2} \left\{ ( G^{>} - G^{<} ), \varSigma^{>} \right\}
+\\	& = - \frac{1}{2} \left\{ \varSigma^{<}, G^{>} \right\}
+		+ \frac{1}{2} \left\{ G^{<}, \varSigma^{>} \right\}
+\\	& = \text{(\ref{eq:KB_formalism})}	
+.\end{align*}
+この式と式~(\ref{eq:KB_formalism})の差分をとると，非平衡スペクトル関数$A$に対する式
+\begin{align}
+\left[ \left( G_0^{-1} - U - \varSigma \right), A \right]
+	- \left[ \varGamma, G \right]
+	& = 0
+\end{align}
+を得る．
+この関係式は時に整合性の確認として用いられる．
+GKB方程式の大雑把な導出をまとめると，
+1.lesser成分に対する右Dysonと左Dyson方程式の差分をとる，
+2.R/Aについて対称と反対称に分離して整理する，
+3.スペクトル関数と自己エネルギーの虚部を導入する，
+という手順になる．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%-%-%-%-%-%-%-%-%-%-
+\subsection{\label{sec:5.3}Keldyshの公式}
+%-%-%-%-%-%-%-%-%-%-
+
+\begin{align}
+\label{eq:Keldysh_formalism}
+\end{align}
+
 
 
 
