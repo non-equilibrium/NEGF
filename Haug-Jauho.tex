@@ -10,7 +10,7 @@
 %メールアドレス
 \email{junji@ucas.ac.cn}
 %作成・更新日とバージョンを書けばいいと思うよ
-\date{2020-04-05}
+\date{2020-04-05〜}
 %
 \graphicspath{{./figure/}}
 % - - - - - - - - - 以上，個別編集箇所 - - - - - - - - - 
@@ -573,6 +573,10 @@ F^{\R} (t, t')
 .\end{align}
 
 
+%-%-%-%-%-%-%-%-%-%-%-
+\textbf{平衡状態における電子フォノン相互作用の自己エネルギー．}\\
+%-%-%-%-%-%-%-%-%-%-%-
+飛ばす．
 
 
 %-%-%-%-%-%-%-%-%-%--%-%-%-%-%-%-%-%-%-%
@@ -589,7 +593,7 @@ F^{\R} (t, t')
 その方が簡潔で系統的な導出となるためである．
 
 %-%-%-%-%-%-%-%-%-%-
-\subsection{\label{sec:5.2}Kadanoff-Baymの公式}
+\subsection{\label{sec:5.2}Kadanoff-Baym形式}
 %-%-%-%-%-%-%-%-%-%-
 出発点はDyson方程式~(\ref{eq:Dyson})の微分形である:
 \begin{align}
@@ -719,39 +723,103 @@ greater成分$G^{>}$に対するGKB方程式を同様に導出することがで
 \end{align}
 を得る．
 この関係式は時に整合性の確認として用いられる．
+
 GKB方程式の大雑把な導出をまとめると，
 1.lesser成分に対する右Dysonと左Dyson方程式の差分をとる，
 2.R/Aについて対称と反対称に分離して整理する，
 3.スペクトル関数と自己エネルギーの虚部を導入する，
 という手順になる．
 
+具体的な応用に移る前に，いくつかの一般的性質についてコメントしておこう．
+第一に，閉じた方程式を得るためには，GKB方程式は$G^{\R}$と$G^{\A}$のDyson方程式を補助的に用いなければならない．
+$G^{\R}$と$G^{\A}$の非平衡なDyson方程式は平衡系におけるものと等価である．
+これは前の章で示したLangreth則に従えば明らかである．
+よって，非常によく計算すべきものは2つの段階に分けられる．
+すなわち，まず$G^{\R}$と$G^{\A}$に対するDyson方程式を解く（あるいは解こうとする！）．
+それからその結果を入力としてGKB方程式に対して用いる．
+しかしながら，一つ難点がある．
+$G^{<}$や$G^{>}$が$G^{\R}$と$G^{\A}$に対するDyson方程式に含まれているという状況に出会すことがあるのだ．
+たとえば，電子格子相互作用の遅延自己エネルギーがあり，それは遅延関数に加えて，相関関数をも含んでいる．
+これは極めて複雑である．
+なぜならDyson方程式とGKB方程式を同時に解かなければならないのだから．
 
+次に，一見すると分かりにくいが，GKB方程式の構造は，輸送方程式の構造をしている．
+相関関数$G^{<}$は，歴史的解釈を避けたとしても，ある意味で，分布関数を一般化させたものに相当している．
+この点については後に詳しく述べる．
+概略すると，式~(\ref{eq:KB_formalism})の左辺の第一の交換関係は（一般化した）駆動力を表し，第2項と第3項はくりこみを，そして右辺は量子的な衝突項を表している．
 
+また，GKB方程式もまた厳密であり，非可逆性はない．
+Boltzmann方程式により予測されるような非可逆的ふるまいは，GKB方程式にある近似を施した後に導かれる．
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+GKB方程式を導出する過程で，右Dyson方程式と左Dyson方程式~(\ref{eq:Dyson_differential_form})の差分をとった．
+この過程でどのような情報が落ちたのか気になるかもしれない．
+輸送方程式として，GKB方程式はある（一般化された）分布関数の時間発展を決めることができるが，この分布関数に対してどのような初期状態が整合するかについては教えてくれない．
+この情報は元のDyson方程式~(\ref{eq:Dyson_differential_form})には含まれており，差分にするときに落ちたのである．
+ゆえに，原理的には，GKB方程式はさらに別の方程式，たとえば式~(\ref{eq:Dyson_differential_form})の和の方程式を補助的に用いるべきだろう．
+後にこのやり方が実際に機能する例を見る．
 
 
 %-%-%-%-%-%-%-%-%-%-
-\subsection{\label{sec:5.3}Keldyshの公式}
+\subsection{\label{sec:5.3}Keldysh形式}
 %-%-%-%-%-%-%-%-%-%-
+特定の応用に対してはBoltzman方程式を積分方程式，より正確には積分微分方程式として書いた方が都合がよい場合（たとえば10章や12章で議論するような応用例）がある．
+量子運動論において類似の状況がある．
+つまり，GKB方程式~(\ref{eq:KB_formalism})を用いるよりも，その積分形を考える方が使い勝手がよいということである．
+歴史的にはKeldysh~\cite{Keldysh}は，KadanoffとBaymとはほぼ同時期に，しかし独立にこの方法を導いた．
+（もちろん両者はSchwingerスクールの先駆的仕事~\cite{Bakshi1963a,Bakshi1963b,Schwinger}をその起源としてもっている．）
 
+Keldyshの方法とKadanoff-Baymの方法は等価であるが，完全性のために，ここでKeldyshの積分方程式を導出しておこう．
+ただし，ここでもKeldyshの原著に従うというよりは，複素時間Dyson方程式に対して解析接続の方法（Langreth則）を適用した導出を行ない，少し書き換えたKeldysh方程式に等価なものでまとめる．
+式~(\ref{eq:Dyson})を簡潔に書いた$G = G_0 + G_0 \varSigma G$に\footnote{簡単のために1体のポテンシャル項については落とした．それは自由なGreen関数を再定義し直すことで吸収させることができる．}式~(\ref{eq:D^<})を用いると，
 \begin{align}
+G^{<}
+	& = G_0^{<}
+		+ G_0^{\R} \varSigma^{\R} G^{<}
+		+ G_0^{\R} \varSigma^{<} G^{\A}
+		+ G_0^{<} \varSigma^{\A} G^{\A}
+.\end{align}
+ここで左辺を右辺の$G^{<}$に再起的に代入すると，
+\begin{align}
+G^{<}
+	& = G_0^{<}
+		+ G_0^{\R} \varSigma^{\R} \left( G_0^{<} + G_0^{\R} \varSigma^{\R} G^{<} + G_0^{\R} \varSigma^{<} G^{\A} + G_0^{<} \varSigma^{\A} G^{\A} \right)
+		+ G_0^{\R} \varSigma^{<} G^{\A}
+		+ G_0^{<} \varSigma^{\A} G^{\A}
+\notag \\
+	& = ( 1 + G_0^{\R} \varSigma^{\R} ) G_0^{<} ( 1 + \varSigma^{\A} G^{\A} )
+		+ ( G_0^{\R} + G_0^{\R} \varSigma^{\R} G_0^{\R} ) \varSigma^{<} G^{\A}
+		+ G_0^{\R} \varSigma^{\R} G_0^{\R} \varSigma^{\R} G^{<}
+.\end{align}
+上式は非常に示唆的であり，無限次まで再起的に代入し続けると，
+\begin{align}
+G^{<}
+	& = ( 1 + G^{\R} \varSigma^{\R} ) G_0^{<} ( 1 + \varSigma^{\A} G^{\A} )
+		+ G^{\R} \varSigma^{<} G^{\A}
 \label{eq:Keldysh_formalism}
 \end{align}
+が得られる．
+実際，代入していくと，
+\begin{align*}
+G^{<}
+	& = ( 1 + G_0^{\R} \varSigma^{\R} ) G_0^{<} ( 1 + \varSigma^{\A} G^{\A} )
+		+ ( G_0^{\R} + G_0^{\R} \varSigma^{\R} G_0^{\R} ) \varSigma^{<} G^{\A}
+\\ & \hspace{1em}
+		+ G_0^{\R} \varSigma^{\R} G_0^{\R} \varSigma^{\R} ( G_0^{<} + G_0^{\R} \varSigma^{\R} G^{<} + G_0^{\R} \varSigma^{<} G^{\A} + G_0^{<} \varSigma^{\A} G^{\A} )
+\\ & =  ( 1 + G_0^{\R} \varSigma^{\R} + G_0^{\R} \varSigma^{\R} G_0^{\R} \varSigma^{\R} ) G_0^{<} ( 1 + \varSigma^{\A} G^{\A} )
+		+ ( G_0^{\R} + G_0^{\R} \varSigma^{\R} G_0^{\R} + G_0^{\R} \varSigma^{\R} G_0^{\R} \varSigma^{\R} ) \varSigma^{<} G^{\A}
+\\ & \hspace{1em}
+		+ G_0^{\R} \varSigma^{\R} G_0^{\R} \varSigma^{\R} G_0^{\R} \varSigma^{\R} G^{<}
+\\	& = \cdots
+\\	& = ( 1 + G^{\R} \varSigma^{\R} ) G_0^{<} ( 1 + \varSigma^{\A} G^{\A} )
+		+ G^{\R} \varSigma^{<} G^{\A}
+.\end{align*}
+式~(\ref{eq:Keldysh_formalism})がKeldyshの結果と同等である．
+ただし原著では，別の関数$G^{K} = G^{<} + G^{>}$に対して書かれていたが，それは些細な違いでしかない．
+
+Keldysh方程式とGKB方程式の関係は，通常の微分方程式＋境界条件とそれに対応する積分方程式の関係に類似している．
+出発点をどのように選ぶかの違いだけに見える．
+
+
 
 
 
@@ -778,6 +846,10 @@ GKB方程式の大雑把な導出をまとめると，
 \bibitem{Danielewicz1984a} P. Danielewicz: Ann. Phys. (N.Y.) 152, 239 (1984).
 \bibitem{Danielewicz1984b} P. Danielewicz: Ann. Phys. (N.Y.) 152, 305 (1984).
 \bibitem{vanLeeuwen} R. van Leeuwen, N. E. Dahlen, A. Stan: Phys. Rev. B 74, 195105 (2006).
+\bibitem{Keldysh} L. P. Keldysh: Sov. Phys. JETP 20, 1018 (1965).
+\bibitem{Bakshi1963a} P. M. Bakshi, K. T. Mahanthappa: J. Mat. Phys. 4, 1 (1963).
+\bibitem{Bakshi1963b} P. M. Bakshi, K. T. Mahanthappa: J. Mat. Phys. 4, 12 (1963).
+\bibitem{Schwinger} J. Schwinger: J. Math. Phys. 2, 407 (1961).
 
 \end{thebibliography}
 
