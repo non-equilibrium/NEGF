@@ -723,6 +723,7 @@ greater成分$G^{>}$に対するGKB方程式を同様に導出することがで
 \left[ \left( G_0^{-1} - U - \varSigma \right), A \right]
 	- \left[ \varGamma, G \right]
 	& = 0
+\label{eq:5.8}
 \end{align}
 を得る．
 この関係式は時に整合性の確認として用いられる．
@@ -981,6 +982,100 @@ C_1 (\omega, T)
 となる．
 この結果は容易に$n$次にまで拡張でき，本文で定義された勾配演算子$\mathcal{G}$を再現する．
 ■
+
+
+%-%-%-%-%-%-%-%-%-%-
+\subsection{\label{sec:6.2}準粒子近似}
+%-%-%-%-%-%-%-%-%-%-
+\ref{sec:6.1}~節で時間空間でゆっくり変化する外的摂動の効果について考えた．
+ここではさらに，相互作用が弱いという仮定を用いて近似を行う．
+具体的な例として電子格子相互作用を考えても良いし，次に示すように，希薄な密度の不純物による電子散乱でも良い．
+相互作用の小ささのために，直ちにKadanoff-Baym方程式~(\ref{eq:KB_formalism})の左辺における第2と第3の交換関係を無視できる．
+小さな勾配と小さな相互作用のために，それらは微少量の2次の大きさである．
+次に，現段階での近似におけるスペクトル関数を評価しよう．
+遅延/先進Green関数のDyson方程式から，勾配展開の1次までの近似の範囲内では，スペクトル関数$A = \zi (G^{\R} - G^{\A})$は
+\begin{align}
+A (\bp, \omega, \bm{R}, T)
+	& = - 2 \Im \left[
+		\frac{1}{\omega - \epsilon (\bp) - U (\bm{R}, T) - \varSigma^{\R} (\bp, \omega, \bm{R}, T)}
+	\right]
+\label{eq:6.10}
+\end{align}
+で与えられる．
+そして最低次においては，$\varSigma^{\R} \to - \zi \eta$となり，ゆえに
+\begin{align}
+A_0 (\bp, \omega, \bm{R}, T)
+	& = 2 \pi \delta [ \omega - \epsilon (\bp) - U (\bm{R}, T) ]
+\label{eq:6.11}
+\end{align}
+となる．
+この関係を準粒子近似と呼ぶ．
+式~(\ref{eq:6.10})の，より洗練された取り扱いはくりこまれた輸送係数を導く．
+最後に，近似解~(\ref{eq:6.10})は厳密な関係式~(\ref{eq:5.8})を満たすことを指摘しておくことは教育的であろう．
+
+
+%-%-%-%-%-%-%-%-%-%-
+\subsection{\label{sec:6.3}Boltzmann方程式の再現}
+%-%-%-%-%-%-%-%-%-%-
+さて，勾配近似~(\ref{eq:6.5})を適用して，最低次のスペクトル関数~(\ref{eq:6.11})をGKB方程式~(\ref{eq:KB_formalism})に代入しよう．
+明確な結果を得るために散乱機構を決めなければならないが，ここでは電子と希薄な不純物散乱を考え，自己無撞着Born近似での扱いを行う．
+それはすなわち自己エネルギーが
+\begin{align}
+\varSigma^{<} (\bp, \omega, \bm{R}, T)
+	& = c \sum_{\bq} | V (\bp - \bq) |^2 G^{<} (\bq, \omega, \bm{R}, T)
+, \notag \\
+\varSigma^{>} (\bp, \omega, \bm{R}, T)
+	& = c \sum_{\bq} | V (\bp - \bq) |^2 G^{>} (\bq, \omega, \bm{R}, T)
+\end{align}
+で与えられることを意味している．
+$G^{<}$と$G^{>}$を考える代わりに，以下で定義される$F (\bp, \omega, \bm{R}, T)$を導入すると有用である．
+\begin{align}
+G^{<} (\bp, \omega, \bm{R}, T)
+	& = \zi A (\bp, \omega, \bm{R}, T) F (\bp, \omega, \bm{R}, T)
+, \notag \\
+G^{>} (\bp, \omega, \bm{R}, T)
+	& = - \zi A (\bp, \omega, \bm{R}, T) [ 1 - F (\bp, \omega, \bm{R}, T) ]
+.\end{align}
+この関係は完全に一般的であり，厳密な関係$G^{<} - G^{>} = \zi A$を満たす．
+つまり，単純に未知の関数をまた別の未知の関数で書き換えたに過ぎない．
+しかしながら，準粒子近似~(\ref{eq:6.11})の範囲内では，$\omega$と$\bp$共に依存する$F (\bp, \omega, \bm{R}, T)$を考えることは冗長であり，分布関数の役割を果たす3つの変数で書ける関数$f (\bp, \bm{R}, T)$を考えれば十分である\footnote{技術的には，この段階では，関数$f$はただの数学的なものでしかないが，後の章で議論するように，それは（一般化）分布関数と解釈できることが分かる．}．
+そこで，
+\begin{align}
+G^{<} (\bp, \omega, \bm{R}, T)
+	& = \zi A_0 (\bp, \omega, \bm{R}, T) f (\bp, \bm{R}, T)
+\notag \\
+	& = 2 \pi \zi \delta [ \omega - \epsilon (\bp) - U (\bm{R}, T) ] f (\bp, \bm{R}, T)
+\end{align}
+また$G^{>}$も同様に，
+\begin{align*}
+G^{>} (\bp, \omega, \bm{R}, T)
+	& = - 2 \pi \zi \delta [ \omega - \epsilon (\bp) - U (\bm{R}, T) ] [ 1 - f (\bp, \bm{R}, T) ]
+\end{align*}
+となる．
+これらの材料を用いると，GKB方程式は，$[G_0^{-1} - U, A_0] = 0$を用いると，
+\begin{align}
+\zi (A_0 [G_0^{-1} - U, f])_{\bp, \omega, \bm{R}, T}
+	& = - c \sum_{\bq} A_0 (\bp, \omega, \bm{R}, T) A_0 (\bq, \omega, \bm{R}, T)
+		| V (\bp - \bq) |^2 [ f (\bq, \bm{R}, T) - f (\bp, \bm{R}, T) ]
+\label{eq:6.15}
+.\end{align}
+まだ式~(\ref{eq:6.15})の左辺を評価することが残っているが，それは
+\begin{align}
+(G_0^{-1} - U)_{\bp, \omega, \bm{R}, T}
+	& = \omega - \epsilon (\bp) - U (\bm{R}, T)
+\end{align}
+を思い出せば良い．
+そして，式~(\ref{eq:6.5})を用いたのち，$\omega$について積分をすれば，最終的に
+\begin{align}
+\frac{\partial f}{\partial T}
+	+ \frac{\partial \epsilon}{\partial \bp} \cdot \frac{\partial f}{\partial \bm{R}}
+	+ \left( - \frac{\partial U (\bm{R}, T)}{\partial \bm{R}} \right) \cdot \frac{\partial f}{\partial \bp}
+	& = c \sum_{\bq} | V (\bp - \bq) |^2 \delta[ \epsilon (\bq) - \epsilon (\bp) ] [ f (\bq, \bm{R}, T) - f (\bp, \bm{R}, T) ]
+\end{align}
+を得るが，これは標準的な不純物Bolotzmann方程式と見なすことができる．
+Boltzmann方程式に対する量子力学的な補正は，この章で施した近似のいくつかを緩くすることで評価することができ，それは次章以降の課題である．
+
+
 
 
 
