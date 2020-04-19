@@ -1052,9 +1052,29 @@ G^{>} (\bp, \omega, \bm{R}, T)
 	& = - 2 \pi \zi \delta [ \omega - \epsilon (\bp) - U (\bm{R}, T) ] [ 1 - f (\bp, \bm{R}, T) ]
 \end{align*}
 となる．
-これらの材料を用いると，GKB方程式は，$[G_0^{-1} - U, A_0] = 0$を用いると，
+これらをGKB方程式~(\ref{eq:KB_formalism})に代入していく．
+まず右辺であるが，式~(\ref{eq:6.5})からWigner表示では，
+\begin{align*}
+\text{(右辺)}
+	& =  (\varSigma^{>} G^{<} - G^{>} \varSigma^{<})_{\bp, \omega, \bm{R}, T}
+\\	& = \zi ( A \varSigma^{<} )_{\bp, \omega, \bm{R}, T}
+		- \zi [ A F (\varSigma^{<} - \varSigma^{>}) ]_{\bp, \omega, \bm{R}, T}
+\\	& = - c \sum_{\bq} | V (\bp - \bq) |^2 A (\bp, \omega, \bm{R}, T) A (\bq, \omega, \bm{R}, T) [F (\bq, \omega, \bm{R}, T) - F (\bp, \omega, \bm{R}, T) ]
+\\	& \to - (2 \pi)^2 c \sum_{\bq} | V (\bp - \bq) |^2 \delta [\omega - \epsilon (\bq) - U (\bm{R}, T)] \delta [\omega - \epsilon (\bp) - U (\bm{R}, T)]  [f (\bq, \bm{R}, T) - f (\bp, \bm{R}, T) ]
+,\end{align*}
+また，左辺は，すでに述べたように，第2項と第3項は微少量なので無視すると，
+\begin{align*}
+\text{(左辺)}
+	& \simeq \left[ \left( G_0^{-1} - U \right), G^{<} \right]
+\\	& = \left[ \left( G_0^{-1} - U \right), \zi A F \right]_{\bp, \omega, \bm{R}, T}
+\\	& = \{ [ ( G_0^{-1} - U ), A ] \zi F \}_{\bp, \omega, \bm{R}, T}
+		+ \{ \zi A [ ( G_0^{-1} - U ), F ] \}_{\bp, \omega, \bm{R}, T}
+\\	& \to \{ [ ( G_0^{-1} - U ), A_0 ] \zi f \}_{\bp, \omega, \bm{R}, T}
+		+ \{ \zi A_0 [ ( G_0^{-1} - U ), f ] \}_{\bp, \omega, \bm{R}, T}
+.\end{align*}
+これらの材料を用いると，GKB方程式は，$[(G_0^{-1} - U), A_0] = 0$を用いると，
 \begin{align}
-\zi (A_0 [G_0^{-1} - U, f])_{\bp, \omega, \bm{R}, T}
+\zi \{A_0 [(G_0^{-1} - U), f] \}_{\bp, \omega, \bm{R}, T}
 	& = - c \sum_{\bq} A_0 (\bp, \omega, \bm{R}, T) A_0 (\bq, \omega, \bm{R}, T)
 		| V (\bp - \bq) |^2 [ f (\bq, \bm{R}, T) - f (\bp, \bm{R}, T) ]
 \label{eq:6.15}
